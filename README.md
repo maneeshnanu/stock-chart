@@ -4,6 +4,10 @@
 ```
 yarn install
 ```
+## Configure environment variables
+```
+create a copy of `.env.example` and rename it to `.env` and make the required changes
+```
 
 ### Compiles and hot-reloads for development
 ```

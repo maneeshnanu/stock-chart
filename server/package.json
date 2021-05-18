@@ -1,0 +1,25 @@
+{
+  "name": "stock-chart-server",
+  "version": "1.0.0",
+  "description": "Server for Socket connection for live data handling",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "socket",
+    "alpha",
+    "vantage"
+  ],
+  "author": "Maneesh Nanu",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "request-promise": "^4.2.6",
+    "socket.io": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

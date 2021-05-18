@@ -1,18 +1,50 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Header />
+    <section class="sidebar-layout">
+      <div class="p-1">
+        <div class="columns">
+          <div class="column is-3">
+            <Sidebar />
+          </div>
+          <div class="column is-9">
+            <Chart
+              :chartData="stockChartData"
+              :result="result"
+              :key="stockChartComponent"
+              :constructorType="'stockChart'"
+            ></Chart>
+          </div>
+        </div>
+      </div>
+    </section>
+    <Footer />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Chart from "@/components/Chart.vue";
+import Sidebar from "@/components/Sidebar.vue";
+import Footer from "@/components/Footer.vue";
+import Header from "@/components/Header.vue";
 
 export default {
   name: "Home",
-  components: {
-    HelloWorld,
+  data() {
+    return {
+      result: 0,
+      stockChartData: {},
+      stockChartComponent: 0,
+      selectedSymbol: "",
+    };
   },
+  components: {
+    Chart,
+    Sidebar,
+    Footer,
+    Header,
+  },
+  methods: {},
 };
 </script>
