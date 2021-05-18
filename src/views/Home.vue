@@ -4,16 +4,11 @@
     <section class="sidebar-layout">
       <div class="p-1">
         <div class="columns">
-          <div class="column is-3">
+          <div class="column is-2">
             <Sidebar />
           </div>
-          <div class="column is-9">
-            <Chart
-              :chartData="stockChartData"
-              :result="result"
-              :key="stockChartComponent"
-              :constructorType="'stockChart'"
-            ></Chart>
+          <div class="column is-10">
+            <Chart :chartData="stockChartData"></Chart>
           </div>
         </div>
       </div>
@@ -33,10 +28,9 @@ export default {
   name: "Home",
   data() {
     return {
-      result: 0,
-      stockChartData: {},
-      stockChartComponent: 0,
+      loading: false,
       selectedSymbol: "",
+      stockChartData: {},
     };
   },
   components: {
@@ -45,6 +39,25 @@ export default {
     Footer,
     Header,
   },
-  methods: {},
+  methods: {
+    toggleLoading() {
+      this.loading != this.loading;
+    },
+  },
+  mounted() {
+    this.$store.dispatch("loadSymbolData", "TCS").then(
+      (response) => {
+        console.log("||||||||||", response);
+        this.stockChartData = response;
+        return response;
+      },
+      (error) => {
+        console.error(
+          "Got nothing from server. Prompt user to check internet connection and try again",
+          error
+        );
+      }
+    );
+  },
 };
 </script>

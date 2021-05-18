@@ -106,20 +106,6 @@ export default new Vuex.Store({
     addSymbol({ commit }, symbol) {
       commit("ADD", symbol);
     },
-    // TODO
-    // generateSMA() {
-    //   Object.entries(this.chartData).forEach(([key, prices]) => {
-    //     let newSeries = {
-    //       name: key,
-    //       data: Object.entries(prices).reverse(),
-    //       pointStart: Date.UTC(2020),
-    //       pointEnd: Date.UTC(2020),
-    //       pointInterval: 24 * 3600 * 1500,
-    //     };
-    //     this.chart2.series.push(newSeries);
-    //   });
-    //   // this.highcharts.redraw();
-    // },
     movingAverage({ commit }, [array, count, qualifier]) {
       // calculate average for subarray
       let avg = function (array, qualifier) {
@@ -150,9 +136,9 @@ export default new Vuex.Store({
       commit("UPDATE_SMA", result);
       return result;
     },
-    async loadSymbolData({ commit }, symbol) {
+    loadSymbolData({ commit }, symbol) {
       commit("LOADING", true);
-      await axios
+      return axios
         .get(
           `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=1min&outputsize=full&apikey=LS5R25VM75IYJ81F`
         )
@@ -176,7 +162,7 @@ export default new Vuex.Store({
             []
           );
 
-          console.log(newData);
+          console.log(newData.slice(0, 20));
           commit("UPDATE_SYMBOL_DATA", newData);
           commit("LOADING", false);
           return newData;
